@@ -10,7 +10,6 @@ import {
   FileTextOutlined,
   UserOutlined,
   LogoutOutlined,
-  HeartOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   ShoppingCartOutlined,
@@ -72,9 +71,14 @@ export default function PatientLayout({ children }: { children: React.ReactNode 
         style={{ boxShadow: '2px 0 8px rgba(0,0,0,0.08)', position: 'fixed', height: '100vh', left: 0, top: 0, zIndex: 100 }}
         width={220}
       >
-        <div style={{ padding: collapsed ? '16px 8px' : '16px 20px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #f0f0f0' }}>
-          <HeartOutlined style={{ fontSize: 22, color: '#1677ff' }} />
-          {!collapsed && <Text strong style={{ fontSize: 16 }}>HealthPlus</Text>}
+        <div style={{ padding: collapsed ? '16px 8px' : '16px 20px', display: 'flex', alignItems: 'center', borderBottom: '1px solid #f0f0f0' }}>
+          {collapsed ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img src="/logo-icon.png" alt="ZyroHealth" style={{ width: 24, height: 24, objectFit: 'contain', flexShrink: 0 }} />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img src="/logo-full.png" alt="ZyroHealth" style={{ height: 22, width: 'auto', display: 'block' }} />
+          )}
         </div>
         <Menu
           mode="inline"

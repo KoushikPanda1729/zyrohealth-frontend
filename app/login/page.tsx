@@ -162,18 +162,14 @@ export default function LoginPage() {
         />
 
         {/* Brand mark */}
-        <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div
-            style={{
-              width: 36, height: 36, borderRadius: 10,
-              background: 'rgba(255,255,255,0.16)',
-              border: '1px solid rgba(255,255,255,0.28)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}
-          >
-            <HeartOutlined style={{ fontSize: 18, color: '#fff' }} />
-          </div>
-          <Text strong style={{ color: '#fff', fontSize: 17 }}>HealthPlus</Text>
+        <div
+          style={{
+            position: 'relative', zIndex: 1, display: 'inline-flex', alignItems: 'center',
+            background: '#fff', borderRadius: 10, padding: '7px 12px',
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-full.png" alt="ZyroHealth" style={{ height: 22, width: 'auto', display: 'block' }} />
         </div>
 
         {/* Headline + floating mockup */}
@@ -326,9 +322,9 @@ export default function LoginPage() {
         <div style={{ width: '100%', maxWidth: 420, margin: 'auto' }}>
 
           {/* Compact brand — mobile only */}
-          <div className="login-mobile-brand" style={{ display: 'none', alignItems: 'center', gap: 10, marginBottom: 28, justifyContent: 'center' }}>
-            <HeartOutlined style={{ fontSize: 26, color: '#0f766e' }} />
-            <Title level={4} style={{ margin: 0 }}>HealthPlus</Title>
+          <div className="login-mobile-brand" style={{ display: 'none', alignItems: 'center', marginBottom: 28, justifyContent: 'center' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-full.png" alt="ZyroHealth" style={{ height: 28, width: 'auto', display: 'block' }} />
           </div>
 
           {/* Step 1 — Phone */}

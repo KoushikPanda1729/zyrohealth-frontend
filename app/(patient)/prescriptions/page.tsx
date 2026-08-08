@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Typography, Spin, Empty, Tag, Divider, Button, Collapse, message, Modal, Form, Input, InputNumber, Space } from 'antd';
 import {
   FileTextOutlined, MedicineBoxOutlined, ExperimentOutlined,
-  PlusSquareOutlined, DownloadOutlined, PrinterOutlined, UserOutlined, ShoppingCartOutlined,
+  DownloadOutlined, PrinterOutlined, UserOutlined, ShoppingCartOutlined,
 } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 import { apiCall } from '../../../lib/api';
@@ -243,15 +243,10 @@ function PrescriptionBody({ rx, doctorName, specialty, qualifications, licenseNo
           display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
           paddingBottom: 16, borderBottom: `3px solid ${TEAL}`, marginBottom: 16,
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{
-              width: 44, height: 44, borderRadius: '50%', background: TEAL, flexShrink: 0,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}>
-              <PlusSquareOutlined style={{ color: '#fff', fontSize: 22 }} />
-            </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <div>
-              <div style={{ fontWeight: 700, fontSize: 17, color: '#111' }}>HealthPlus</div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo-full.png" alt="ZyroHealth" style={{ height: 28, width: 'auto', display: 'block', marginBottom: 4 }} />
               <div style={{ fontSize: 12, color: '#64748b' }}>Digital Health Platform</div>
             </div>
           </div>

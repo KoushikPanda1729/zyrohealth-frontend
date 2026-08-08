@@ -7,7 +7,7 @@ import {
 } from 'antd';
 import {
   FileTextOutlined, EyeOutlined, FilePdfOutlined, SendOutlined, PlusOutlined,
-  MedicineBoxOutlined, ExperimentOutlined, PlusSquareOutlined,
+  MedicineBoxOutlined, ExperimentOutlined,
 } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
@@ -57,16 +57,10 @@ function PrescriptionPad({ rx, doctor }: { rx: Prescription; doctor: DoctorProfi
         marginBottom: 14,
       }}>
         {/* Left: platform */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{
-            width: 42, height: 42, borderRadius: '50%',
-            background: TEAL,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-          }}>
-            <PlusSquareOutlined style={{ color: '#fff', fontSize: 20 }} />
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <div>
-            <div style={{ fontWeight: 700, fontSize: 16, color: '#111' }}>HealthPlus</div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-full.png" alt="ZyroHealth" style={{ height: 26, width: 'auto', display: 'block', marginBottom: 4 }} />
             <div style={{ fontSize: 11, color: '#64748b' }}>Digital Health Platform</div>
           </div>
         </div>
