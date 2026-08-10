@@ -69,7 +69,7 @@ export default function DoctorDashboard() {
               title="Total Bookings"
               value={data?.totalBookings || 0}
               prefix={<CalendarOutlined />}
-              valueStyle={{ color: '#1677ff' }}
+              styles={{ content: { color: '#1677ff' } }}
             />
           </Card>
         </Col>
@@ -79,7 +79,7 @@ export default function DoctorDashboard() {
               title="Today's Appointments"
               value={data?.todayBookings || 0}
               prefix={<CalendarOutlined />}
-              valueStyle={{ color: '#52c41a' }}
+              styles={{ content: { color: '#52c41a' } }}
             />
           </Card>
         </Col>
@@ -89,7 +89,7 @@ export default function DoctorDashboard() {
               title="Total Patients"
               value={data?.totalPatients || 0}
               prefix={<UserOutlined />}
-              valueStyle={{ color: '#722ed1' }}
+              styles={{ content: { color: '#722ed1' } }}
             />
           </Card>
         </Col>
@@ -100,7 +100,7 @@ export default function DoctorDashboard() {
               value={Number(data?.rating || 0).toFixed(1)}
               prefix={<StarOutlined />}
               suffix="/ 5"
-              valueStyle={{ color: '#fa8c16' }}
+              styles={{ content: { color: '#fa8c16' } }}
             />
           </Card>
         </Col>
