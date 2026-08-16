@@ -115,12 +115,12 @@ export default function OrdersPage() {
             )}
 
             {(order.status === 'placed' || order.status === 'confirmed') && (
-              <div style={{ marginTop: 16, display: 'flex', gap: 8 }}>
+              <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 <Input
                   placeholder="Reason (optional)"
                   value={reasonById[order.id] ?? ''}
                   onChange={(e) => setReasonById((prev) => ({ ...prev, [order.id]: e.target.value }))}
-                  style={{ maxWidth: 300 }}
+                  style={{ maxWidth: 300, flex: '1 1 200px' }}
                 />
                 <Popconfirm title="Cancel this order?" onConfirm={() => cancelOrder(order.id)}>
                   <Button danger loading={cancellingId === order.id}>Cancel Order</Button>

@@ -69,7 +69,7 @@ export default function DoctorProfilePage() {
       <Card style={{ borderRadius: 12, maxWidth: 700 }}>
         <Form form={form} layout="vertical" onFinish={handleSave}>
           <Divider>Professional Info</Divider>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0 16px' }}>
             <Form.Item label="Specialty" name="specialty">
               <Select placeholder="Select specialty" allowClear showSearch>
                 {specialties.map((s) => (

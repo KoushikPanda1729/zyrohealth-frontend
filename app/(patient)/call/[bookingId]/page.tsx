@@ -35,6 +35,7 @@ export default function PatientCallPage() {
   const [camOn, setCamOn] = useState(true);
   const [hasCamera, setHasCamera] = useState(true);
   const [remoteCount, setRemoteCount] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
@@ -202,6 +203,17 @@ export default function PatientCallPage() {
     if (chatOpen) setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
   }, [chatOpen, messages]);
 
+  // Below this width the chat sidebar would eat most/all of the video area,
+  // so it's shown as a full-screen overlay instead of a side-by-side column.
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 768px)');
+    const applyMatch = (matches: boolean) => setIsMobile(matches);
+    applyMatch(mql.matches);
+    const handler = (e: MediaQueryListEvent) => applyMatch(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+
   const sendChat = useCallback(() => {
     const content = chatInput.trim();
     if (!content || !socketRef.current) return;
@@ -247,8 +259,8 @@ export default function PatientCallPage() {
         )}
       </div>
 
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
-        <div style={{ flex: 1, position: 'relative', overflow: 'hidden', background: '#1e293b' }}>
+      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', position: 'relative' }}>
+        <div style={{ flex: 1, position: 'relative', overflow: 'hidden', background: '#1e293b', width: '100%' }}>
           <video
             ref={remoteVideoRef}
             autoPlay
@@ -277,21 +289,23 @@ export default function PatientCallPage() {
             muted
             style={{
               position: 'absolute', bottom: 16, right: 16,
-              width: 140, height: 100, borderRadius: 12, objectFit: 'cover',
+              width: isMobile ? 100 : 140, height: isMobile ? 72 : 100, borderRadius: 12, objectFit: 'cover',
               border: '2px solid rgba(255,255,255,0.25)',
               background: '#0f172a',
               display: inCall && hasCamera ? 'block' : 'none',
             }}
           />
           {inCall && !hasCamera && (
-            <div style={{ position: 'absolute', bottom: 16, right: 16, width: 140, height: 100, borderRadius: 12, background: '#1e293b', border: '2px solid rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ position: 'absolute', bottom: 16, right: 16, width: isMobile ? 100 : 140, height: isMobile ? 72 : 100, borderRadius: 12, background: '#1e293b', border: '2px solid rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <StopOutlined style={{ color: '#64748b', fontSize: 18 }} />
             </div>
           )}
         </div>
 
         {chatOpen && (
-          <div style={{ width: 300, display: 'flex', flexDirection: 'column', background: '#0f1a2e', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+          <div style={isMobile
+            ? { position: 'absolute', inset: 0, zIndex: 20, display: 'flex', flexDirection: 'column', background: '#0f1a2e' }
+            : { width: 300, display: 'flex', flexDirection: 'column', background: '#0f1a2e', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
             <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
               <Text style={{ color: '#e2e8f0', fontWeight: 600 }}>In-Call Chat</Text>
             </div>
@@ -323,7 +337,7 @@ export default function PatientCallPage() {
       </div>
 
       {inCall && (
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 20, padding: '20px 0', background: 'rgba(0,0,0,0.65)', flexShrink: 0, alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 20, rowGap: 12, padding: '20px 12px', background: 'rgba(0,0,0,0.65)', flexShrink: 0, alignItems: 'center', flexWrap: 'wrap' }}>
           <Ctrl icon={micOn ? <AudioOutlined /> : <AudioMutedOutlined />} label={micOn ? 'Mute' : 'Unmute'} active={!micOn} onClick={() => void toggleMic()} />
           {hasCamera && <Ctrl icon={camOn ? <CameraOutlined /> : <StopOutlined />} label={camOn ? 'Camera off' : 'Camera on'} active={!camOn} onClick={toggleCam} />}
           <Ctrl icon={<MessageOutlined />} label="Chat" active={chatOpen} highlight={chatOpen} onClick={() => setChatOpen((v) => !v)} />

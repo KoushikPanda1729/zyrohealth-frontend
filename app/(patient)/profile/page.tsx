@@ -113,7 +113,7 @@ function ProfileContent() {
       <Card style={{ borderRadius: 12, maxWidth: 700 }}>
         <Form form={form} layout="vertical" onFinish={handleSave}>
           <Divider>Personal Information</Divider>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0 16px' }}>
             <Form.Item label="Date of Birth" name="dateOfBirth">
               <DatePicker style={{ width: '100%' }} disabledDate={(d) => d.isAfter(dayjs())} />
             </Form.Item>
@@ -143,7 +143,7 @@ function ProfileContent() {
           <Form.Item label="Address" name="address">
             <Input placeholder="Street address" />
           </Form.Item>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0 16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0 16px' }}>
             <Form.Item label="City" name="city">
               <Input placeholder="City" />
             </Form.Item>
@@ -156,7 +156,7 @@ function ProfileContent() {
           </div>
 
           <Divider>Emergency Contact</Divider>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0 16px' }}>
             <Form.Item label="Contact Name" name="emergencyContactName">
               <Input placeholder="Emergency contact name" />
             </Form.Item>

@@ -215,7 +215,7 @@ export default function PhoneNumberPage() {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto' }}>
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
         <div>
           <Title level={3} style={{ margin: 0 }}>Phone Numbers</Title>
           <Text type="secondary">Manage your SIP Trunk phone number and voice agent settings.</Text>
@@ -266,7 +266,7 @@ export default function PhoneNumberPage() {
                 </div>
 
                 {/* Right: agent + actions */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
                   {/* Assigned agent */}
                   <div style={{
                     background: '#fafafa', border: '1px solid #f0f0f0', borderRadius: 8,

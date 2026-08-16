@@ -184,6 +184,7 @@ export default function LibraryPage() {
             loading={loadingMed}
             size="middle"
             bordered
+            scroll={{ x: 'max-content' }}
             pagination={{ pageSize: 20 }}
           />
         </div>
@@ -203,6 +204,7 @@ export default function LibraryPage() {
             loading={loadingTest}
             size="middle"
             bordered
+            scroll={{ x: 'max-content' }}
             pagination={{ pageSize: 20 }}
           />
         </div>
@@ -225,7 +227,7 @@ export default function LibraryPage() {
         destroyOnHidden
       >
         <Form form={medForm} layout="vertical" onFinish={saveMedicine} style={{ marginTop: 12 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 12px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0 12px' }}>
             <Form.Item name="name" label="Medicine Name" rules={[{ required: true, message: 'Required' }]}>
               <Input placeholder="e.g. Paracetamol" />
             </Form.Item>

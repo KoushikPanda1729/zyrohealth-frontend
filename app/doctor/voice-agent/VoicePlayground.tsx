@@ -167,15 +167,15 @@ export function VoicePlayground({ agentId, open, onClose }: {
 
       {/* Panel */}
       <div style={{
-        position: 'fixed', right: 0, top: 0, bottom: 0, width: 380,
+        position: 'fixed', right: 0, top: 0, bottom: 0, width: 380, maxWidth: '100vw',
         background: '#0d1a2e', zIndex: 1050,
         display: 'flex', flexDirection: 'column',
         boxShadow: '-6px 0 40px rgba(0,0,0,0.5)',
       }}>
         {/* Header */}
         <div style={{ padding: '20px 20px 14px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexShrink: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
+            <div style={{ minWidth: 0 }}>
               <div style={{ color: '#fff', fontWeight: 700, fontSize: 17, letterSpacing: '-0.2px' }}>Test Playground</div>
               <div style={{ color: 'rgba(255,255,255,0.38)', fontSize: 12, marginTop: 4 }}>
                 Test your Voice Agent and see the response in real time
@@ -183,7 +183,7 @@ export function VoicePlayground({ agentId, open, onClose }: {
             </div>
             <button
               onClick={onClose}
-              style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.38)', fontSize: 22, cursor: 'pointer', lineHeight: 1, padding: '0 0 0 12px', flexShrink: 0 }}
+              style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.38)', fontSize: 22, cursor: 'pointer', lineHeight: 1, padding: 0, width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: -8, marginRight: -8 }}
             >
               ×
             </button>

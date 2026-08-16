@@ -140,6 +140,7 @@ export default function AvailabilityPage() {
           loading={loading}
           bordered
           size="middle"
+          scroll={{ x: 'max-content' }}
           pagination={false}
         />
       </Card>

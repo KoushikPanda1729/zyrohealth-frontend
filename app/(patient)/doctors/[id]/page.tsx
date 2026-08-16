@@ -144,10 +144,10 @@ export default function DoctorDetailPage() {
         {/* Doctor Profile Card */}
         <Col xs={24} lg={14}>
           <Card style={{ borderRadius: 12 }}>
-            <div style={{ display: 'flex', gap: 20, alignItems: 'flex-start', marginBottom: 20 }}>
+            <div style={{ display: 'flex', gap: 20, alignItems: 'flex-start', marginBottom: 20, flexWrap: 'wrap' }}>
               <Avatar size={80} icon={<UserOutlined />} style={{ background: '#1677ff', flexShrink: 0 }} />
-              <div>
-                <Title level={4} style={{ margin: 0 }}>{doctor.user?.fullName || 'Doctor'}</Title>
+              <div style={{ flex: '1 1 200px', minWidth: 0 }}>
+                <Title level={4} style={{ margin: 0, wordBreak: 'break-word' }}>{doctor.user?.fullName || 'Doctor'}</Title>
                 {doctor.specialty && <Tag color="blue" style={{ marginBottom: 8 }}>{doctor.specialty}</Tag>}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <Rate disabled value={Number(doctor.rating) || 0} allowHalf style={{ fontSize: 14 }} />
@@ -158,7 +158,7 @@ export default function DoctorDetailPage() {
               </div>
             </div>
 
-            <Descriptions column={2} size="small" bordered>
+            <Descriptions column={{ xs: 1, sm: 2 }} size="small" bordered>
               <Descriptions.Item label={<><ClockCircleOutlined /> Experience</>}>
                 {doctor.yearsOfExperience ? `${doctor.yearsOfExperience} years` : '—'}
               </Descriptions.Item>

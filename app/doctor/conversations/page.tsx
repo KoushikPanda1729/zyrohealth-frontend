@@ -65,7 +65,7 @@ function CallDetail({ call, onBack }: { call: ConversationCall; onBack: () => vo
       </button>
 
       {/* Details + Summary row */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16, marginBottom: 16 }}>
         <div style={{ background: '#fff', border: '1px solid #f0f0f0', borderRadius: 10, padding: '16px 20px' }}>
           <Text strong style={{ display: 'block', marginBottom: 12, fontSize: 13 }}>Call Details</Text>
           {([

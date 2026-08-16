@@ -575,7 +575,7 @@ export default function LoginPage() {
         .login-float-fast2 { animation: loginFloatFast2 4.5s ease-in-out infinite; }
 
         @media (max-width: 900px) {
-          .login-brand-panel { display: none; }
+          .login-brand-panel { display: none !important; }
           .login-mobile-brand { display: flex !important; }
         }
       `}</style>

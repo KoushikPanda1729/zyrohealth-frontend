@@ -202,6 +202,7 @@ export default function AppointmentsPage() {
             dataSource={displayed.map((b) => ({ ...b, key: b.id }))}
             bordered
             size="middle"
+            scroll={{ x: 'max-content' }}
             pagination={{ pageSize: 10, showSizeChanger: false } as TablePaginationConfig}
           />
         )}

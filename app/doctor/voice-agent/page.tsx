@@ -383,7 +383,7 @@ function VoiceSettings({ draft, setDraft, gender, setGender }: { draft: AgentDra
       <div style={{ borderBottom: '1px solid #f0f0f0', paddingBottom: 12, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}>
         <Text type="secondary" style={{ fontSize: 13 }}>⚙️ General Settings</Text>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 20 }}>
+      <div className="va-grid-2" style={{ gap: 16, marginBottom: 20 }}>
         <div>
           <Text strong style={{ display: 'block', marginBottom: 6 }}>Agent Language</Text>
           <Select value={draft.language} onChange={(v) => setDraft({ ...draft, language: v, ttsLanguage: v })} options={LANGUAGES} style={{ width: '100%' }} />
@@ -423,7 +423,7 @@ function CallDetail({ call, draft, onBack }: { call: AgentCall; draft: AgentDraf
         ← Back to calls
       </button>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+      <div className="va-grid-2" style={{ gap: 16, marginBottom: 16 }}>
         <div style={{ border: '1px solid #f0f0f0', borderRadius: 10, padding: '16px 20px' }}>
           <Text strong style={{ display: 'block', marginBottom: 12, fontSize: 13 }}>Call Details</Text>
           {([
@@ -592,10 +592,10 @@ function AgentConfigForm({ draft, setDraft }: { draft: AgentDraft; setDraft: (d:
   return (
     <div>
       {/* Tab bar */}
-      <div style={{ display: 'flex', gap: 4, background: '#f5f5f5', borderRadius: 10, padding: 4, width: 'fit-content', marginBottom: 28 }}>
+      <div style={{ display: 'flex', gap: 4, background: '#f5f5f5', borderRadius: 10, padding: 4, width: 'fit-content', maxWidth: '100%', overflowX: 'auto', marginBottom: 28 }}>
         {tabs.map((t) => (
           <button key={t.key} onClick={() => setTab(t.key)}
-            style={{ padding: '7px 20px', borderRadius: 7, border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: tab === t.key ? 700 : 500, background: tab === t.key ? '#fff' : 'transparent', color: tab === t.key ? '#1677ff' : '#888', boxShadow: tab === t.key ? '0 1px 4px rgba(0,0,0,0.1)' : 'none', transition: 'all 0.15s' }}>
+            style={{ padding: '7px 20px', borderRadius: 7, border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: tab === t.key ? 700 : 500, background: tab === t.key ? '#fff' : 'transparent', color: tab === t.key ? '#1677ff' : '#888', boxShadow: tab === t.key ? '0 1px 4px rgba(0,0,0,0.1)' : 'none', transition: 'all 0.15s', flexShrink: 0 }}>
             {t.label}
           </button>
         ))}
@@ -621,7 +621,7 @@ function AgentConfigForm({ draft, setDraft }: { draft: AgentDraft; setDraft: (d:
               <Text strong>Add Tool</Text>
               <Button size="small" icon={<span>🔧</span>}>Add Tool</Button>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div className="va-grid-2" style={{ gap: 12 }}>
               <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, color: '#444' }}>
                 <span>🔧</span> End Conversation
               </div>
@@ -680,7 +680,7 @@ function AgentConfigForm({ draft, setDraft }: { draft: AgentDraft; setDraft: (d:
       {/* STT */}
       {tab === 'stt' && (
         <div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
+          <div className="va-grid-2" style={{ gap: 16, marginBottom: 28 }}>
             <div>
               <div style={{ marginBottom: 6, display: 'flex', alignItems: 'center', gap: 4 }}><Text strong>Provider</Text><Text type="danger">*</Text></div>
               <Select value={draft.sttProvider} onChange={(v) => setDraft({ ...draft, sttProvider: v, sttModel: (STT_MODELS[v] ?? [])[0]?.value ?? '' })} style={{ width: '100%' }}
@@ -697,7 +697,7 @@ function AgentConfigForm({ draft, setDraft }: { draft: AgentDraft; setDraft: (d:
       {/* LLM */}
       {tab === 'llm' && (
         <div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 20 }}>
+          <div className="va-grid-2" style={{ gap: 16, marginBottom: 20 }}>
             <div>
               <div style={{ marginBottom: 6, display: 'flex', alignItems: 'center', gap: 4 }}><Text strong>Provider</Text><Text type="danger">*</Text></div>
               <Select value={draft.llmProvider} onChange={(v) => setDraft({ ...draft, llmProvider: v, llmModel: (LLM_MODELS[v] ?? [])[0]?.value ?? '' })} style={{ width: '100%' }}
@@ -715,7 +715,7 @@ function AgentConfigForm({ draft, setDraft }: { draft: AgentDraft; setDraft: (d:
       {/* TTS */}
       {tab === 'tts' && (
         <div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 20 }}>
+          <div className="va-grid-2" style={{ gap: 16, marginBottom: 20 }}>
             <div>
               <div style={{ marginBottom: 6, display: 'flex', alignItems: 'center', gap: 4 }}><Text strong>Provider</Text><Text type="danger">*</Text></div>
               <Select value={draft.ttsProvider} onChange={(v) => setDraft({ ...draft, ttsProvider: v, ttsModel: (TTS_MODELS[v] ?? [])[0]?.value ?? '', ttsVoiceId: v === 'sarvam' ? 'shubh' : '' })} style={{ width: '100%' }}
@@ -944,8 +944,12 @@ export default function VoiceAgentPage() {
 
     return (
       <div style={{ padding: '0 4px' }}>
+        <style>{`
+          .va-grid-2 { display: grid; grid-template-columns: 1fr 1fr; }
+          @media (max-width: 640px) { .va-grid-2 { grid-template-columns: 1fr; } }
+        `}</style>
         {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', rowGap: 12, marginBottom: 20 }}>
           <Title level={4} style={{ margin: 0 }}>Voice Agent Management</Title>
           <Button type="primary" icon={<PlusOutlined />} onClick={() => { setCreateDraft(defaultDraft()); setView('create'); }}>
             Create new Agent
@@ -954,7 +958,7 @@ export default function VoiceAgentPage() {
 
         {/* Filters */}
         <div style={{ display: 'flex', gap: 12, marginBottom: 16, alignItems: 'center' }}>
-          <Input prefix={<SearchOutlined style={{ color: '#ccc' }} />} placeholder="Search by agent name" value={search} onChange={(e) => setSearch(e.target.value)} style={{ maxWidth: 360 }} allowClear />
+          <Input prefix={<SearchOutlined style={{ color: '#ccc' }} />} placeholder="Search by agent name" value={search} onChange={(e) => setSearch(e.target.value)} style={{ maxWidth: 360, width: '100%' }} allowClear />
         </div>
 
         <Table
@@ -962,6 +966,7 @@ export default function VoiceAgentPage() {
           rowKey="id"
           columns={columns}
           pagination={false}
+          scroll={{ x: 'max-content' }}
           onRow={(a) => ({ onDoubleClick: () => void openAgent(a), style: { cursor: 'pointer' } })}
           locale={{ emptyText: (
             <div style={{ padding: '48px 0', textAlign: 'center' }}>
@@ -1011,19 +1016,23 @@ export default function VoiceAgentPage() {
 
   return (
     <div>
+      <style>{`
+        .va-grid-2 { display: grid; grid-template-columns: 1fr 1fr; }
+        @media (max-width: 640px) { .va-grid-2 { grid-template-columns: 1fr; } }
+      `}</style>
       {/* Edit header */}
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-          <Button type="text" icon={<ArrowLeftOutlined />} onClick={() => { router.push('/doctor/voice-agent'); setView('list'); setSelected(null); }} style={{ marginTop: 2 }} />
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <Title level={4} style={{ margin: 0 }}>{selected?.displayName}</Title>
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', rowGap: 12, marginBottom: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, minWidth: 0 }}>
+          <Button type="text" icon={<ArrowLeftOutlined />} onClick={() => { router.push('/doctor/voice-agent'); setView('list'); setSelected(null); }} style={{ marginTop: 2, flexShrink: 0 }} />
+          <div style={{ minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+              <Title level={4} style={{ margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>{selected?.displayName}</Title>
               {isLive && <Tag color="green" style={{ borderRadius: 20 }}>Live</Tag>}
             </div>
             <Text type="secondary" style={{ fontSize: 12 }}>Edit your Voice Agent's configuration</Text>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 10 }}>
+        <div style={{ display: 'flex', gap: 10, rowGap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
           {isLive && <Button icon={<PhoneOutlined />} onClick={() => setOutboundModal(true)}>Outbound Call</Button>}
           {isLive && (
             <Button

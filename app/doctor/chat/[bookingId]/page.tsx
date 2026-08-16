@@ -215,14 +215,14 @@ export default function DoctorChatPage() {
           <Avatar size={42} icon={<UserOutlined />} style={{ background: '#1677ff' }} />
           {patientOnline && <div style={{ position: 'absolute', bottom: 1, right: 1, width: 10, height: 10, background: '#22c55e', border: '2px solid #fff', borderRadius: '50%' }} />}
         </div>
-        <div style={{ flex: 1 }}>
-          <Text strong style={{ fontSize: 15, display: 'block', lineHeight: 1.3 }}>{patientName}</Text>
-          <Text style={{ fontSize: 12, color: patientOnline ? '#22c55e' : '#94a3b8' }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <Text strong style={{ fontSize: 15, display: 'block', lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{patientName}</Text>
+          <Text style={{ fontSize: 12, color: patientOnline ? '#22c55e' : '#94a3b8', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {typing ? '✏️ typing…' : patientOnline ? 'Online' : booking?.scheduledAt ? new Date(booking.scheduledAt).toLocaleString() : 'Offline'}
           </Text>
         </div>
         {booking?.consultationType === 'video' && (
-          <Button type="primary" icon={<VideoCameraOutlined />} onClick={() => router.push(`/doctor/call/${bookingId}`)} style={{ background: '#0e7490', border: 'none', borderRadius: 20 }}>Start Call</Button>
+          <Button type="primary" icon={<VideoCameraOutlined />} onClick={() => router.push(`/doctor/call/${bookingId}`)} style={{ background: '#0e7490', border: 'none', borderRadius: 20, flexShrink: 0 }}>Start Call</Button>
         )}
       </div>
 

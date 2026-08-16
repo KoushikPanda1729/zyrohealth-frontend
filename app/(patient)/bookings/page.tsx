@@ -271,6 +271,7 @@ function BookingsContent() {
             onChange={(p: TablePaginationConfig) => fetchBookings(p.current || 1)}
             bordered
             size="middle"
+            scroll={{ x: 'max-content' }}
           />
         )}
       </Card>

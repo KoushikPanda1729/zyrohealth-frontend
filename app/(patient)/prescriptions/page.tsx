@@ -125,8 +125,8 @@ function OrderMedicinesModal({ rx, open, onClose }: { rx: Prescription; open: bo
     >
       <div style={{ marginBottom: 16 }}>
         {items.map((item, i) => (
-          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0', borderBottom: '1px solid #f1f5f9' }}>
-            <div style={{ flex: 1 }}>
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0', borderBottom: '1px solid #f1f5f9', flexWrap: 'wrap' }}>
+            <div style={{ flex: '1 1 100%', minWidth: 0 }}>
               <Text strong>{item.name}</Text>
               {item.genericName && <Text type="secondary" style={{ marginLeft: 6, fontSize: 12 }}>({item.genericName})</Text>}
             </div>
@@ -260,7 +260,7 @@ function PrescriptionBody({ rx, doctorName, specialty, qualifications, licenseNo
         </div>
 
         {/* ── Patient info row ── */}
-        <div style={{ display: 'flex', border: '1px solid #e2e8f0', borderRadius: 8, overflow: 'hidden', marginBottom: 22 }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', border: '1px solid #e2e8f0', borderRadius: 8, overflow: 'hidden', marginBottom: 22 }}>
           {[
             { label: 'PATIENT', value: 'You', flex: 1 },
             { label: 'DATE', value: dateStr, flex: 1 },
@@ -269,9 +269,11 @@ function PrescriptionBody({ rx, doctorName, specialty, qualifications, licenseNo
           ].map((item, i, arr) => (
             <div key={item.label} style={{
               flex: item.flex,
+              minWidth: 120,
               padding: '9px 16px',
               borderRight: i < arr.length - 1 ? '1px solid #e2e8f0' : 'none',
               background: '#f8fafc',
+              wordBreak: 'break-word',
             }}>
               <div style={{ fontSize: 10, color: '#94a3b8', fontWeight: 600, letterSpacing: 0.6, marginBottom: 3 }}>{item.label}</div>
               <div style={{ fontSize: 14, fontWeight: 600, color: '#1e293b' }}>{item.value}</div>
@@ -428,10 +430,10 @@ export default function PrescriptionsPage() {
             return {
               key: rx.id,
               label: (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', flexWrap: 'wrap', gap: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', minWidth: 0 }}>
                     <UserOutlined style={{ color: TEAL }} />
-                    <Text strong>{doctorName}</Text>
+                    <Text strong style={{ wordBreak: 'break-word' }}>{doctorName}</Text>
                     {specialty && <Tag color="blue" style={{ fontSize: 11 }}>{specialty}</Tag>}
                     <Text type="secondary" style={{ fontSize: 12 }}>
                       · {rx.medicines.length} medicine{rx.medicines.length !== 1 ? 's' : ''}

@@ -208,7 +208,15 @@ function PrescriptionBuilder() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 112px)' }}>
+    <div className="rxb-shell" style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 112px)' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .rxb-shell { height: auto !important; }
+          .rxb-panels { flex-direction: column !important; overflow: visible !important; }
+          .rxb-lib-panel { width: 100% !important; max-height: 280px; }
+          .rxb-draft-panel { width: 100%; }
+        }
+      `}</style>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, flexShrink: 0 }}>
         <Button icon={<ArrowLeftOutlined />} onClick={() => router.back()} />
@@ -217,10 +225,10 @@ function PrescriptionBuilder() {
         </Title>
       </div>
 
-      <div style={{ display: 'flex', gap: 16, flex: 1, overflow: 'hidden' }}>
+      <div className="rxb-panels" style={{ display: 'flex', gap: 16, flex: 1, overflow: 'hidden' }}>
 
         {/* ── Left panel: Library ── */}
-        <div style={{
+        <div className="rxb-lib-panel" style={{
           width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column',
           background: '#fff', borderRadius: 12, border: '1px solid #f0f0f0',
           overflow: 'hidden',
@@ -320,7 +328,7 @@ function PrescriptionBuilder() {
         </div>
 
         {/* ── Right panel: Prescription Draft ── */}
-        <div style={{
+        <div className="rxb-draft-panel" style={{
           flex: 1, display: 'flex', flexDirection: 'column', background: '#fff',
           borderRadius: 12, border: '1px solid #f0f0f0', overflow: 'hidden',
         }}>
@@ -382,7 +390,7 @@ function PrescriptionBuilder() {
                     onClick={() => removeMedicine(med._key)}
                   />
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 8 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: 8 }}>
                   <div>
                     <Text style={{ fontSize: 11, color: '#888', display: 'block', marginBottom: 2 }}>Dosage *</Text>
                     <Input
@@ -494,7 +502,7 @@ function PrescriptionBuilder() {
           <div style={{
             padding: '12px 20px', borderTop: '1px solid #f0f0f0',
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-            flexShrink: 0, background: '#fff',
+            flexShrink: 0, background: '#fff', flexWrap: 'wrap', gap: 8,
           }}>
             <Text type="secondary" style={{ fontSize: 13 }}>
               {draftMedicines.length} medicine{draftMedicines.length !== 1 ? 's' : ''} · {draftTests.length} test{draftTests.length !== 1 ? 's' : ''}

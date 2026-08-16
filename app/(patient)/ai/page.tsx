@@ -378,14 +378,14 @@ export default function AiPage() {
 
   /* ── Tab: AI Doctors ── */
   const doctorsTab = (
-    <div style={{ padding: '24px 28px', overflowY: 'auto', height: '100%' }}>
+    <div className="ai-doctors-tab" style={{ padding: '24px 28px', overflowY: 'auto', height: '100%' }}>
       {aiDoctors.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '80px 20px', color: '#bbb' }}>
           <TeamOutlined style={{ fontSize: 40, marginBottom: 12, display: 'block' }} />
           <Text type="secondary">No AI doctors available yet. Ask your admin to add some.</Text>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
+        <div className="ai-doctors-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
           {aiDoctors.map((doc) => (
             <Card
               key={doc.id}
@@ -432,10 +432,10 @@ export default function AiPage() {
 
   /* ── Tab: Sessions (chat) ── */
   const sessionsTab = (
-    <div style={{ display: 'flex', width: '100%', height: '100%' }}>
+    <div className="ai-sessions-tab" style={{ display: 'flex', width: '100%', height: '100%' }}>
 
       {/* Sidebar */}
-      <div style={{ width: 248, borderRight: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column', background: '#fafafa', flexShrink: 0 }}>
+      <div className="ai-sidebar" style={{ width: 248, borderRight: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column', background: '#fafafa', flexShrink: 0 }}>
         <div style={{ padding: '12px 12px 8px' }}>
           <Button
             type="primary"
@@ -755,9 +755,9 @@ export default function AiPage() {
                         onPressEnter={sendMessage}
                         onPaste={handlePaste}
                         placeholder={imageFile ? 'Add a description (optional)...' : 'Describe symptoms or paste / upload an image...'}
-                        size="large" disabled={sending} style={{ borderRadius: 10 }}
+                        size="large" disabled={sending} style={{ borderRadius: 10, flex: '1 1 auto', minWidth: 0 }}
                       />
-                      <Button type="primary" icon={<SendOutlined />} size="large" onClick={sendMessage} loading={sending} disabled={!input.trim() && !imageFile} style={{ borderRadius: 10 }}>Send</Button>
+                      <Button type="primary" icon={<SendOutlined />} size="large" onClick={sendMessage} loading={sending} disabled={!input.trim() && !imageFile} style={{ borderRadius: 10, flexShrink: 0 }}>Send</Button>
                     </div>
                   </div>
                 )
@@ -827,6 +827,26 @@ export default function AiPage() {
           {sessionsTab}
         </div>
       </div>
+
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .ai-sessions-tab {
+            flex-direction: column;
+          }
+          .ai-sidebar {
+            width: 100% !important;
+            max-height: 40%;
+            border-right: none !important;
+            border-bottom: 1px solid #f0f0f0;
+          }
+          .ai-doctors-tab {
+            padding: 16px !important;
+          }
+          .ai-doctors-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
