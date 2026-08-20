@@ -17,6 +17,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { apiCall } from '../../lib/api';
 import { setToken, setRefreshToken, setUser } from '../../lib/auth';
+import { PolicyLinksFooter } from '../policies/PolicyLinksFooter';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -549,6 +550,7 @@ export default function LoginPage() {
             />
           )}
 
+          <PolicyLinksFooter />
         </div>
       </div>
 
